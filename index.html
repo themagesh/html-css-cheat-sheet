@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Docker Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+    <header class="bg-blue-500 text-white py-4 text-center">
+        <h1 class="text-3xl font-bold">Complete Guide to Docker: Basics to Advanced</h1>
+        <p class="mt-2">From Docker Installation to Kubernetes</p>
+    </header>
+
+    <div class="container mx-auto px-4 py-6">
+        <section id="introduction">
+            <h2 class="text-2xl font-semibold text-blue-600">Introduction to Docker</h2>
+            <p class="mt-2 text-gray-700">
+                Docker is an open-source platform for automating the deployment, scaling, and management of applications. 
+                It allows you to package your application with all its dependencies into a standardized unit called a container.
+            </p>
+
+        </section>
+
+        <section id="installation" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker Installation and Setup</h2>
+            <p class="mt-2 text-gray-700">Follow the steps below to install Docker on Windows, Linux, and macOS:</p>
+            
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Windows and MacOS Installation:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                1. Download Docker Desktop from <a href="https://www.docker.com/products/docker-desktop" class="text-blue-600">https://www.docker.com/products/docker-desktop</a>
+                2. Run the installer and follow the on-screen instructions.
+                3. Once installed, start Docker Desktop from the Start menu.
+                4. Verify installation by running the command: 
+                <span class="font-mono">docker --version</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">macOS Installation:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                1. Download Docker Desktop for Mac from <a href="https://www.docker.com/products/docker-desktop" class="text-blue-600">https://www.docker.com/products/docker-desktop</a>
+                2. Install the downloaded DMG file.
+                3. Open Docker from the Applications folder.
+                4. Verify installation by running:
+                <span class="font-mono">docker --version</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Linux Installation:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                1. Update the apt package index:
+                <span class="font-mono">sudo apt-get update</span>
+
+                2. Install required dependencies:
+                <span class="font-mono">sudo apt-get install \
+                apt-transport-https \
+                ca-certificates \
+                curl \
+                software-properties-common</span>
+
+                3. Add Docker’s official GPG key:
+                <span class="font-mono">curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span>
+
+                4. Add the Docker APT repository:
+                <span class="font-mono">sudo add-apt-repository \
+                "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+                $(lsb_release -cs) \
+                stable"</span>
+
+                5. Install Docker Engine:
+                <span class="font-mono">sudo apt-get install docker-ce</span>
+
+                6. Verify installation:
+                <span class="font-mono">docker --version</span>
+                </pre>
+            </div>
+        </section>
+
+        <section id="basic" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Building and Running Containers</h2>
+            <p class="mt-2 text-gray-700">
+                Docker allows you to create containers from images and run them with various commands.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Build a Docker Image:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker build -t my_image_name .</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Run a Docker Container:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker run -d -p 8080:80 my_image_name</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">List Running Containers:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker ps</span>
+                </pre>
+            </div>
+        </section>
+
+        <section id="networking" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker Networking</h2>
+            <p class="mt-2 text-gray-700">
+                Docker allows containers to communicate with each other via virtual networks. 
+                Here’s how you can create and manage Docker networks.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Create a Network:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker network create my_network</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Attach a Container to a Network:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker network connect my_network my_container</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">List Networks:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker network ls</span>
+                </pre>
+            </div>
+        </section>
+
+        <section id="volumes" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Managing Data with Volumes and Bind Mounts</h2>
+            <p class="mt-2 text-gray-700">
+                Docker allows you to persist data beyond the lifetime of a container using volumes and bind mounts.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Create a Volume:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker volume create my_volume</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Run a Container with a Volume:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker run -d -v my_volume:/data my_image_name</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">List Volumes:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker volume ls</span>
+                </pre>
+            </div>
+        </section>
+
+        <section id="compose" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker Compose</h2>
+            <p class="mt-2 text-gray-700">
+                Docker Compose allows you to define and run multi-container Docker applications.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Docker Compose YAML File Example:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                version: '3'
+                services:
+                  web:
+                    image: nginx
+                    ports:
+                      - "8080:80"
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Start Services with Docker Compose:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker-compose up</span>
+                </pre>
+            </div>
+        </section>
+
+        <section id="python" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Dockerizing Python Applications</h2>
+            <p class="mt-2 text-gray-700">
+                Python applications can easily be containerized with Docker. Here's how you can create a Dockerfile for your Python app.
+            </p>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Dockerfile for Python:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                # Use official Python image from Docker Hub
+                FROM python:3.9-slim
+        
+                # Set working directory
+                WORKDIR /app
+        
+                # Copy requirements file
+                COPY requirements.txt .
+        
+                # Install dependencies
+                RUN pip install --no-cache-dir -r requirements.txt
+        
+                # Copy the rest of the application code
+                COPY . .
+        
+                # Expose the port the app runs on
+                EXPOSE 5000
+        
+                # Command to run the application
+                CMD ["python", "app.py"]
+                </pre>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Build and Run Python Docker Container:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                # Build the image
+                <span class="font-mono">docker build -t python-app .</span>
+        
+                # Run the container
+                <span class="font-mono">docker run -d -p 5000:5000 python-app</span>
+                </pre>
+            </div>
+        </section>
+        
+        <section id="nodejs" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Dockerizing Node.js Applications</h2>
+            <p class="mt-2 text-gray-700">
+                Node.js applications can also be easily containerized with Docker. Here's how to create a Dockerfile for a Node.js app.
+            </p>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Dockerfile for Node.js:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                # Use official Node.js image from Docker Hub
+                FROM node:14
+        
+                # Set working directory
+                WORKDIR /app
+        
+                # Copy package.json and install dependencies
+                COPY package*.json ./
+                RUN npm install
+        
+                # Copy the rest of the application code
+                COPY . .
+        
+                # Expose the port the app runs on
+                EXPOSE 3000
+        
+                # Command to run the application
+                CMD ["npm", "start"]
+                </pre>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Build and Run Node.js Docker Container:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                # Build the image
+                <span class="font-mono">docker build -t node-app .</span>
+        
+                # Run the container
+                <span class="font-mono">docker run -d -p 3000:3000 node-app</span>
+                </pre>
+            </div>
+        </section>
+        
+
+        <section id="ci-cd" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker for Development and CI/CD</h2>
+            <p class="mt-2 text-gray-700">
+                Docker is widely used in continuous integration and continuous deployment pipelines.
+                Here’s how you can use Docker in CI/CD.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">CI/CD Pipeline Example with Docker:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                # .gitlab-ci.yml example
+                stages:
+                  - build
+                  - deploy
+
+                build:
+                  script:
+                    - docker build -t my_image .
+
+                deploy:
+                  script:
+                    - docker run -d -p 8080:80 my_image
+                </pre>
+            </div>
+        </section>
+
+        <section id="advanced" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker Swarm and Kubernetes (Advanced)</h2>
+            <p class="mt-2 text-gray-700">
+                Docker Swarm and Kubernetes are tools for orchestrating multi-container applications. 
+                Docker Swarm is Docker’s native clustering and orchestration solution, while Kubernetes is a more advanced container orchestration tool.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Deploy with Docker Swarm:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                # Initialize Docker Swarm:
+                <span class="font-mono">docker swarm init</span>
+
+                # Deploy a Stack with a Compose File:
+                <span class="font-mono">docker stack deploy -c docker-compose.yml my_stack</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Kubernetes Deployment Example:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                apiVersion: apps/v1
+                kind: Deployment
+                metadata:
+                  name: my-app
+                spec:
+                  replicas: 3
+                  selector:
+                    matchLabels:
+                      app: my-app
+                  template:
+                    metadata:
+                      labels:
+                        app: my-app
+                    spec:
+                      containers:
+                        - name: my-app
+                          image: my_image:latest
+                </pre>
+            </div>
+        </section>
+
+        <section id="security" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker Security</h2>
+            <p class="mt-2 text-gray-700">
+                Docker security is crucial for keeping your containers and images safe. Here are some tips and best practices to secure your Docker environment.
+            </p>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Use Trusted Images:</h3>
+                <p class="text-gray-700">Always use official and trusted images from Docker Hub or your private registry. Avoid using images from unknown sources as they may contain malware or vulnerabilities.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Keep Docker and Your System Updated:</h3>
+                <p class="text-gray-700">Ensure both Docker and your system packages are updated regularly to mitigate vulnerabilities. Outdated software can be an easy target for attackers.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Run Containers with Least Privilege:</h3>
+                <p class="text-gray-700">Limit container privileges by using the <code>--user</code> flag to specify a non-root user when running containers. Additionally, use <code>--read-only</code> to make the container filesystem immutable, which can limit the impact of security breaches.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Use Docker Content Trust (DCT):</h3>
+                <p class="text-gray-700">Docker Content Trust (DCT) is a feature that enforces the use of signed images. It ensures that only verified images are pulled and run on your system, reducing the risk of running tampered images.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Isolate Containers with Docker Networks:</h3>
+                <p class="text-gray-700">By default, Docker creates a bridge network for containers, but it’s a good practice to create isolated networks for containers to limit communication between them unless absolutely necessary. You can create custom networks with <code>docker network create</code> and assign specific containers to those networks.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Limit Resource Usage:</h3>
+                <p class="text-gray-700">Restrict CPU, memory, and I/O usage for your containers using Docker’s <code>--memory</code> and <code>--cpus</code> flags. This limits the impact of a potential attack that could consume system resources.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Secure the Docker Daemon:</h3>
+                <p class="text-gray-700">Configure the Docker daemon to require client authentication by using TLS certificates. You should also limit access to the Docker API by binding it to a specific IP address or using firewall rules to restrict external access.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Scanning for Vulnerabilities:</h3>
+                <p class="text-gray-700">Regularly scan your Docker images and containers for vulnerabilities using tools like <a href="https://www.docker.com/blog/docker-security-scan-for-images-and-containers/">Docker Security Scanning</a> or <a href="https://github.com/anchore/anchore-engine">Anchore Engine</a>. These tools can help identify and fix known vulnerabilities in your Docker environment.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Avoid Privileged Mode:</h3>
+                <p class="text-gray-700">Running containers in privileged mode grants them extended capabilities, which could be exploited by attackers. Avoid using the <code>--privileged</code> flag unless absolutely necessary for certain use cases.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Use Multi-Stage Builds:</h3>
+                <p class="text-gray-700">Multi-stage builds reduce the size of your final images and help remove unnecessary build dependencies that might expose vulnerabilities. In the first stage, compile and build your application, and in the second, only include the essential runtime environment.</p>
+            </div>
+        
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Audit and Monitor Docker Containers:</h3>
+                <p class="text-gray-700">Regularly audit and monitor Docker containers for suspicious activity or security issues using tools like <a href="https://www.aquasec.com/cloud-native-security-hub/">Aqua Security</a> or <a href="https://www.twistlock.com/">Twistlock</a>. These tools can help with runtime security and compliance monitoring.</p>
+            </div>
+        </section>
+        
+
+        <section id="troubleshooting" class="mt-8">
+            <h2 class="text-2xl font-semibold text-blue-600">Docker Troubleshooting</h2>
+            <p class="mt-2 text-gray-700">
+                Here are some tips to help troubleshoot common Docker issues.
+            </p>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">Check Container Logs:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker logs my_container</span>
+                </pre>
+            </div>
+
+            <div class="bg-gray-200 p-4 rounded-lg mt-4">
+                <h3 class="font-semibold">View Docker System Status:</h3>
+                <pre class="bg-gray-300 p-4 rounded">
+                <span class="font-mono">docker info</span>
+                </pre>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
+
